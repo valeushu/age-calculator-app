@@ -118,7 +118,7 @@ p.error {
   color: hsl(228, 45%, 44%);
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 404px) {
   .input {
     margin-bottom: 20px;
   }
@@ -178,7 +178,7 @@ p.error {
   } */
 } 
 
-@media only screen and (min-width: 376px) and (max-width: 600px) {
+@media only screen and (min-width: 405px) and (max-width: 600px) {
   /* Reglas para pantallas entre 376px y 768px */
 
   .input {
