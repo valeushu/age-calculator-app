@@ -104,6 +104,9 @@ p.error {
   font-style: italic;
   margin: 5px 0;
 }
+.result{
+  margin-top: 20px;
+}
 
 .result h1 {
   font-size: 60px;
