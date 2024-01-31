@@ -66,6 +66,10 @@ hr {
   height: 1px;
   background: var(--Light-grey);
 }
+img{
+  width: 50%;
+  margin-top: 5px;
+}
 
 button {
   position: absolute;
@@ -116,7 +120,7 @@ p.error {
 
 @media only screen and (max-width: 375px) {
   .input {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   input {
     font-size: 18px;
@@ -140,9 +144,76 @@ p.error {
     font-size: 10px;
   }
   button {
+    width: 50px;
+    height: 50px; /* Ajusta la altura del botón */
     right: 40%;
+    margin-top: -25px;
   }
   .result {
     margin-top: 40px;
   }
+
+  img{
+    width: 50%;
+    margin-top: 5px;
+  }
+  hr {
+    border: none;
+    margin-top: 50px;
+    height: 1px;
+    background: var(--Light-grey);
+  }
+  
+  /* button {
+  
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background: var(--Purple);
+    right: 50px;
+    margin-top: -32px;
+    cursor: pointer;
+  } */
 } 
+
+@media only screen and (min-width: 376px) and (max-width: 600px) {
+  /* Reglas para pantallas entre 376px y 768px */
+
+  .input {
+    margin-bottom: 30px;
+  }
+
+  input {
+    font-size: 20px;
+    width: 100px;
+  }
+
+  .content {
+    width: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    border-bottom-right-radius: 25%;
+  }
+
+  button {
+    right: 20px;
+    margin-top: -20px;
+  }
+
+  .result h1 {
+    font-size: 50px;
+  }
+
+  p.error {
+    font-size: 12px;
+    margin: 5px 0;
+  }
+
+  .result {
+    margin-top: 30px;
+  }
+}
+
+
