@@ -1,213 +1,148 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
 
 :root {
-  --colour-purple: hsl(259, 100%, 65%);
-  --colour-lightRed: hsl(0, 100%, 67%);
-  --colour-White: hsl(0, 0%, 100%);
-  --offWhite: hsl(0, 0%, 94%);
-  --light-grey: hsl(0, 0%, 86%);
-  --smokey-grey: hsl(0, 1%, 44%);
+  --Purple: hsl(259, 100%, 65%);
+  --Light-red: hsl(0, 100%, 67%);
+  --White: hsl(0, 0%, 100%);
+  --Off-white: hsl(0, 0%, 94%);
+  --Light-grey: hsl(0, 0%, 86%);
+  --Smokey-grey: hsl(0, 1%, 44%);
   --Off-black: hsl(0, 0%, 8%);
 }
 
-/* Project Styles */
-body {
+* {
   margin: 0;
   padding: 0;
-  background-color: var(--offWhite);
-  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-main {
+body {
+  background: var(--Off-white);
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 100vw;
 }
 
-section {
-  @media only screen and (min-width: 800px) {
-    width: 50em;
-    height: 30em;
-  }
+.content {
+  background: var(--White);
+  width: 750px;
+  padding: 50px;
+  border-radius: 20px;
+  border-bottom-right-radius: 40%;
+  position: relative;
+}
 
-  @media only screen and (min-width: 1024px) {
-    width: 60em;
-  }
+.input {
+  display: flex;
+  margin-bottom: 35px;
+}
 
-  @media only screen and (min-width: 1440px) {
-    width: 60em;
-  }
+input {
+  font-size: 32px;
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 10px;
+  border: 0.5px solid var(--Light-grey);
+  outline: none;
+  letter-spacing: 2px;
+  caret-color: var(--Purple);
+}
 
-  .card-container {
-    background-color: var(--colour-White);
-    border-radius: 2em 2em 6em 2em;
-    padding: 2em;
+h6 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--Smokey-grey);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--Light-grey);
+}
+
+button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background: var(--Purple);
+  right: 50px;
+  margin-top: -32px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--Off-black);
+}
+
+input:focus {
+  border: 0.5px solid var(--Purple);
+}
+
+p.error {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--Light-red);
+  font-style: italic;
+  margin: 5px 0;
+}
+
+.result h1 {
+  font-size: 60px;
+  font-style: italic;
+}
+
+.result span {
+  color: var(--Purple);
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+@media only screen and (max-width: 375px) {
+  .input {
+    margin-bottom: 40px;
+  }
+  input {
+    font-size: 18px;
+    width: 80px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  .content {
+    background: var(--White);
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    border-bottom-right-radius: 30%;
     position: relative;
-    margin: 1em;
-    @media only screen and (min-width: 800px) {
-      padding: 4em;
-      border-radius: 2em 2em 12em 2em;
-    }
-
-    form {
-      display: flex;
-      gap: 1em;
-      @media only screen and (min-width: 800px) {
-        width: 75%;
-      }
-      .input {
-        display: grid;
-      }
-
-      label {
-        font-size: 0.7em;
-        text-transform: uppercase;
-        color: var(--smokey-grey);
-        letter-spacing: 3px;
-        @media only screen and (min-width: 800px) {
-          font-size: 1em;
-          line-height: 3em;
-        }
-      }
-
-      input[type="text"] {
-        width: 80%;
-        font-size: 1.5em;
-        border: 1px solid var(--light-grey);
-        color: var(--Off-black);
-        border-radius: 10px;
-        padding: 10px;
-        font-weight: 700;
-        /* -moz-appearance: textfield;  */
-
-        &::placeholder {
-          font-family: "Poppins", sans-serif;
-          color: var(--smokey-grey);
-        }
-
-        &:focus {
-          border: 1px solid var(--colour-purple);
-          outline: 0;
-        }
-
-        &::-webkit-inner-spin-button,
-        &::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
-        @media only screen and (min-width: 800px) {
-          font-size: 2em;
-          padding: 15px;
-        }
-      }
-
-      .label-error {
-        color: var(--colour-lightRed);
-      }
-
-      input[type="text"].error {
-        border: 1px solid hsl(0, 100%, 74%);
-      }
-
-      input[type="text"]:not(.error)::placeholder {
-        color: #3e3c49;
-      }
-
-      input[type="text"].error:focus {
-        border: 1px solid hsl(0, 100%, 74%);
-        outline: 0;
-      }
-
-      p {
-        color: var(--colour-lightRed);
-        font-size: 0.9em;
-        font-weight: 400;
-        font-style: italic;
-        height: 1em;
-      }
-    }
   }
-
-  .card-button {
-    position: relative;
-    margin: 1em 0 2em 0;
-
-    hr {
-      border-top: 1px solid var(--light-grey);
-    }
-
-    .form-button {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      @media only screen and (min-width: 800px) {
-        justify-content: end;
-      }
-    }
-
-    button {
-      background-color: var(--colour-purple);
-      outline: 0;
-      border: 0;
-      border-radius: 50%;
-      height: 5em;
-      width: 5em;
-      position: absolute;
-      top: -35px;
-      bottom: 0;
-
-      &:hover {
-        background-color: var(--Off-black);
-        cursor: pointer;
-      }
-
-      @media only screen and (min-width: 800px) {
-        height: 7em;
-        width: 7em;
-        top: -46px;
-      }
-
-      img {
-        width: 50%;
-        height: 100%;
-      }
-    }
-  }
-
-  .card-body {
-    display: block;
-    font-size: 3em;
-    font-weight: 800;
+  .result h1 {
+    font-size: 45px;
     font-style: italic;
-    line-height: 1.2em;
-
-    @media only screen and (min-width: 800px) {
-      font-size: 6em;
-    }
-
-    span {
-      color: var(--colour-purple);
-      font-weight: 800;
-    }
   }
-}
-
-footer {
-  padding-top: 1em;
-  .attribution {
-    color: var(--smokey-grey);
-    font-size: 0.7em;
-    text-align: center;
-    a {
-      color: var(--colour-purple);
-      text-decoration: none;
-      &:hover {
-        color: var(--Off-black);
-        cursor: pointer;
-      }
-    }
+  p.error {
+    font-size: 10px;
   }
-}
+  button {
+    right: 40%;
+  }
+  .result {
+    margin-top: 40px;
+  }
+} 

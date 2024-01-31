@@ -1,121 +1,138 @@
-$(document).ready(function () {
-  $("form").submit(function () {
-    return false;
-  });
-  // Event listener for form submission when the button is clicked
-  $("#submitButton").click(function () {
-    validateInputs();
-    
-    const ageYears = parseInt($("#yearInput").val(), 10);
-    const ageMonths = parseInt($("#monthInput").val(), 10);
-    const ageDays = parseInt($("#dayInput").val(), 10);
+// Elements
+const dayIn = document.getElementById('dayIn');
+const monthIn = document.getElementById('monthIn');
+const yearIn = document.getElementById('yearIn');
+const dayOut = document.getElementById('dayOut');
+const monthOut = document.getElementById('monthOut');
+const yearOut = document.getElementById('yearOut');
+const calculateBtn = document.getElementById('calculateBtn');
+const errorStyle = '0.5px solid var(--Light-red)';
 
-    // Calculate the age in years, months, and days
-    const today = new Date();
-    const startDate = new Date(ageYears, ageMonths - 1, ageDays);
-    const ageInMilliseconds = today - startDate;
-    const ageDate = new Date(ageInMilliseconds);
-    let years = ageDate.getUTCFullYear() - 1970;
-    let months = ageDate.getUTCMonth();
-    let days = ageDate.getUTCDate() - 1;
+// Calculate Button
+calculateBtn.addEventListener('click', () => {
+  const D = dayIn.value;
+  const M = monthIn.value;
+  const Y = yearIn.value;
+  const birthday = `${Y}-${M}-${D}`;
 
-    // Check if any of the calculated values is NaN (due to empty inputs or invalid dates)
-    if (isNaN(years) || isNaN(months) || isNaN(days)) {
-      years = "--";
-      months = "--";
-      days = "--";
-    }
-
-    // Update the spans with the calculated age using jQuery
-    $("#years").text(years);
-    $("#months").text(months);
-    $("#days").text(days);
-    $(".card-body").show();
-  });
-
-  // Event listener for input fields to remove error state
-  $("#dayInput, #monthInput, #yearInput").on("input", function () {
-    removeErrorState($(this));
-  });
-
-  function removeErrorState(input) {
-    const inputId = input.attr("id");
-    input.removeClass("error");
-    input.removeAttr("style");
-    $("#" + inputId + "ErrorMessage").html("");
-    $("label[for='" + inputId + "']").removeClass("label-error");
+  if (validateDay() && validateMonth() && validateYear()) {
+    console.log('Done');
+  } else {
+    return;
   }
 
-  function validateInputs() {
-    const validationRules = {
-      dayInput: {
-        min: 1,
-        max: 31,
-        field: "day",
-        errorMsg: "Must be a valid day",
-      },
-      monthInput: {
-        min: 1,
-        max: 12,
-        field: "month",
-        errorMsg: "Must be a valid month",
-      },
-      yearInput: {
-        min: 0,
-        max: new Date().getFullYear(),
-        field: "year",
-        errorMsg: "Must be in the past",
-      },
-    };
-
-    let hasErrors = false;
-
-    // Clear previous error messages and remove 'error' class
-    $("input").removeClass("error");
-    $("label").removeClass("label-error");
-
-    for (const inputId in validationRules) {
-      const { min, max, errorMsg } = validationRules[inputId];
-      const input = $("#" + inputId);
-      const inputValue = input.val().trim();
-      const errorElement = $("#" + inputId + "ErrorMessage");
-
-      if (inputValue === "") {
-        displayErrorMessage(errorElement, "This field is required");
-        applyErrorStyle(input);
-        hasErrors = true;
-      } else {
-        const intValue = parseInt(inputValue);
-        if (isNaN(intValue) || intValue < min || intValue > max) {
-          displayErrorMessage(errorElement, errorMsg);
-          applyErrorStyle(input);
-          hasErrors = true;
-
-          // Update age to '--'
-          $("#years").text("--");
-          $("#months").text("--");
-          $("#days").text("--");
-        }
-      }
-    }
-
-  
-    if (hasErrors) {
-      return;
-    } else {
-      // Submit the form
-      $("#ageForm").submit();
-    }
+  // Age Calculation
+  let years = new Date().getFullYear() - new Date(birthday).getFullYear();
+  let months = new Date().getMonth() - new Date(birthday).getMonth();
+  let days = new Date().getDate() - Number(D);
+  if (months < 0) {
+    years = years - 1;
+    months = months + 12;
   }
 
-  function displayErrorMessage(errorElement, errorMessage) {
-    errorElement.html(errorMessage);
+  if (days < 0) {
+    days += getNoOfDays(Y, M - 1);
   }
 
-  function applyErrorStyle(input) {
-    input.addClass("error");
-    input.css("color", "#ff7a7a");
-    const label = $("label[for='" + input.attr("id") + "']");
-    label.addClass("label-error");
-  }
+  // Display Values
+  dayOut.innerText = days;
+  monthOut.innerText = months;
+  yearOut.innerText = years;
 });
+
+// Get Number of Days in a particular months
+function getNoOfDays(y, m) {
+  return new Date(y, m, 0).getDate();
+}
+
+/*================ on Blur Validation =========================*/
+
+// On Blur day validation
+dayIn.addEventListener('blur', () => {
+  validateDay();
+});
+
+// Validate Day function
+const validateDay = () => {
+  const D = dayIn.value;
+  const M = monthIn.value;
+  const Y = yearIn.value;
+  if (D == '') {
+    showMessage(dayIn, 'This field is required', errorStyle);
+    return false;
+  } else if (!validDay(Y, M, D)) {
+    showMessage(dayIn, 'Must be a valid day', errorStyle);
+    return false;
+  } else {
+    showMessage(dayIn, '', '');
+    return true;
+  }
+};
+
+// On Blur month validation
+monthIn.addEventListener('blur', () => {
+  validateMonth();
+});
+
+const validateMonth = () => {
+  const M = monthIn.value;
+  if (M == '') {
+    showMessage(monthIn, 'This field is required', errorStyle);
+    return false;
+  } else if (!validMonth(M)) {
+    showMessage(monthIn, 'Must be a valid month', errorStyle);
+    return false;
+  } else {
+    showMessage(monthIn, '', '');
+    return true;
+  }
+};
+
+// on Blur Year validate
+yearIn.addEventListener('blur', () => {
+  validateYear();
+});
+
+const validateYear = () => {
+  const Y = yearIn.value;
+  const M = monthIn.value;
+  const D = dayIn.value;
+  if (Y == '') {
+    showMessage(yearIn, 'This field is required', errorStyle);
+    return false;
+  } else if (!validYear(Y, M, D)) {
+    showMessage(yearIn, 'Must be in past', errorStyle);
+    return false;
+  } else {
+    showMessage(yearIn, '', '');
+    return true;
+  }
+};
+
+// Validate Day
+function validDay(y, m, d) {
+  if (d > getNoOfDays(y, m) || d < 1) return false;
+  return true;
+}
+
+// validate Month
+function validMonth(m) {
+  if (m > 12 || m < 1) return false;
+  return true;
+}
+
+// Validate Year
+function validYear(y, m, d) {
+  const secondDate = new Date();
+  const firstDate = new Date(`${y}-${m}-${d}`);
+  if (firstDate.setHours(0, 0, 0, 0) <= secondDate.setHours(0, 0, 0, 0)) {
+    return true;
+  }
+  return false;
+}
+
+// Display Message
+function showMessage(elem, msg, border) {
+  elem.style.border = border;
+  elem.nextElementSibling.innerText = msg;
+}
