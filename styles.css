@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+
+:root {
+  --colour-purple: hsl(259, 100%, 65%);
+  --colour-lightRed: hsl(0, 100%, 67%);
+  --colour-White: hsl(0, 0%, 100%);
+  --offWhite: hsl(0, 0%, 94%);
+  --light-grey: hsl(0, 0%, 86%);
+  --smokey-grey: hsl(0, 1%, 44%);
+  --Off-black: hsl(0, 0%, 8%);
+}
+
+/* Project Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--offWhite);
+  font-family: "Poppins", sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+section {
+  @media only screen and (min-width: 800px) {
+    width: 50em;
+    height: 30em;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    width: 60em;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 60em;
+  }
+
+  .card-container {
+    background-color: var(--colour-White);
+    border-radius: 2em 2em 6em 2em;
+    padding: 2em;
+    position: relative;
+    margin: 1em;
+    @media only screen and (min-width: 800px) {
+      padding: 4em;
+      border-radius: 2em 2em 12em 2em;
+    }
+
+    form {
+      display: flex;
+      gap: 1em;
+      @media only screen and (min-width: 800px) {
+        width: 75%;
+      }
+      .input {
+        display: grid;
+      }
+
+      label {
+        font-size: 0.7em;
+        text-transform: uppercase;
+        color: var(--smokey-grey);
+        letter-spacing: 3px;
+        @media only screen and (min-width: 800px) {
+          font-size: 1em;
+          line-height: 3em;
+        }
+      }
+
+      input[type="text"] {
+        width: 80%;
+        font-size: 1.5em;
+        border: 1px solid var(--light-grey);
+        color: var(--Off-black);
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: 700;
+        /* -moz-appearance: textfield;  */
+
+        &::placeholder {
+          font-family: "Poppins", sans-serif;
+          color: var(--smokey-grey);
+        }
+
+        &:focus {
+          border: 1px solid var(--colour-purple);
+          outline: 0;
+        }
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        @media only screen and (min-width: 800px) {
+          font-size: 2em;
+          padding: 15px;
+        }
+      }
+
+      .label-error {
+        color: var(--colour-lightRed);
+      }
+
+      input[type="text"].error {
+        border: 1px solid hsl(0, 100%, 74%);
+      }
+
+      input[type="text"]:not(.error)::placeholder {
+        color: #3e3c49;
+      }
+
+      input[type="text"].error:focus {
+        border: 1px solid hsl(0, 100%, 74%);
+        outline: 0;
+      }
+
+      p {
+        color: var(--colour-lightRed);
+        font-size: 0.9em;
+        font-weight: 400;
+        font-style: italic;
+        height: 1em;
+      }
+    }
+  }
+
+  .card-button {
+    position: relative;
+    margin: 1em 0 2em 0;
+
+    hr {
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .form-button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      @media only screen and (min-width: 800px) {
+        justify-content: end;
+      }
+    }
+
+    button {
+      background-color: var(--colour-purple);
+      outline: 0;
+      border: 0;
+      border-radius: 50%;
+      height: 5em;
+      width: 5em;
+      position: absolute;
+      top: -35px;
+      bottom: 0;
+
+      &:hover {
+        background-color: var(--Off-black);
+        cursor: pointer;
+      }
+
+      @media only screen and (min-width: 800px) {
+        height: 7em;
+        width: 7em;
+        top: -46px;
+      }
+
+      img {
+        width: 50%;
+        height: 100%;
+      }
+    }
+  }
+
+  .card-body {
+    display: block;
+    font-size: 3em;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.2em;
+
+    @media only screen and (min-width: 800px) {
+      font-size: 6em;
+    }
+
+    span {
+      color: var(--colour-purple);
+      font-weight: 800;
+    }
+  }
+}
+
+footer {
+  padding-top: 1em;
+  .attribution {
+    color: var(--smokey-grey);
+    font-size: 0.7em;
+    text-align: center;
+    a {
+      color: var(--colour-purple);
+      text-decoration: none;
+      &:hover {
+        color: var(--Off-black);
+        cursor: pointer;
+      }
+    }
+  }
+}

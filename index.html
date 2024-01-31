@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Age calculator app</title>
+    <link rel="stylesheet" href="/styles.css" />
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="card-container">
+          <div class="card-header">
+            <form id="ageForm">
+              <div class="input">
+                <label for="dayInput">Day</label>
+                <input
+                  type="text"
+                  name="dayInput"
+                  id="dayInput"
+                  placeholder="DD"
+                  maxlength="2"
+                />
+                <p id="dayInputErrorMessage"></p>
+              </div>
+
+              <div class="input">
+                <label for="monthInput">Month</label>
+                <input
+                  type="text"
+                  name="monthInput"
+                  id="monthInput"
+                  placeholder="MM"
+                  maxlength="2"
+                />
+                <p id="monthInputErrorMessage"></p>
+              </div>
+
+              <div class="input">
+                <label for="yearInput">Year</label>
+                <input
+                  type="text"
+                  name="yearInput"
+                  id="yearInput"
+                  placeholder="YYYY"
+                  maxlength="4"
+                />
+                <p id="yearInputErrorMessage"></p>
+              </div>
+            </form>
+          </div>
+          <div class="card-button">
+            <hr />
+            <div class="form-button">
+              <button type="button" id="submitButton">
+                <img src="/images/icon-arrow.svg" alt="icon Arrow" />
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div><span id="years">--</span> years</div>
+            <div><span id="months">--</span> months</div>
+            <div><span id="days">--</span> days</div>
+          </div>
+        </div>
+        <footer>
+          <p class="attribution">
+            Challenge by
+            <a
+              href="https://www.frontendmentor.io?ref=challenge"
+              target="_blank"
+              >Frontend Mentor</a
+            >. Coded by
+            <a href="https://www.linkedin.com/in/andrearecuyo/"
+              >Valeria Mancilla</a
+            >.
+          </p>
+        </footer>
+      </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
